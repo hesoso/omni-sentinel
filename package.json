@@ -1,0 +1,25 @@
+{
+  "name": "omni-sentinel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm -r build",
+    "build:web": "pnpm --filter web build",
+    "build:desktop": "BUILD_TARGET=desktop pnpm --filter web build && pnpm --filter desktop build",
+    "dev:desktop": "BUILD_TARGET=desktop pnpm --filter web build && pnpm --filter desktop dev",
+    "lint": "pnpm -r lint",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy:cloud": "npx sst deploy --stage production",
+    "deploy:cloud:dev": "npx sst dev",
+    "deploy:docker": "docker build -t omni-sentinel:latest . && docker run -p 3000:3000 --env-file .env.local omni-sentinel:latest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.24.0",
+  "devDependencies": {
+    "sst": "^3.17.25"
+  }
+}
